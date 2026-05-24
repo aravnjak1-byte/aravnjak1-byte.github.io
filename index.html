@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aljaž Ravnjak — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1117;
+    --ink-light: #4a4f5e;
+    --ink-faint: #8a909f;
+    --accent: #1f5f8e;
+    --accent-warm: #c8773a;
+    --bg: #f5f3ef;
+    --bg-card: #fffefb;
+    --rule: #d8d4cc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--rule);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .contact-row a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .contact-row a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .location {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-text {
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    max-width: 640px;
+    line-height: 1.8;
+  }
+
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .skill-cell {
+    background: var(--bg-card);
+    padding: 1.2rem 1.4rem;
+  }
+
+  .skill-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-cell-value {
+    font-size: 0.88rem;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  /* ── PROJECTS ── */
+  .project {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .project:last-child { margin-bottom: 0; }
+
+  .project-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--rule);
+    line-height: 1;
+    padding-top: 0.1rem;
+    user-select: none;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .project-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-desc {
+    font-size: 0.92rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 2rem;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .exp-item:first-of-type { border-top: none; padding-top: 0; }
+
+  .exp-role {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+
+  .exp-org {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-desc {
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding-top: 0.15rem;
+  }
+
+  /* ── LANGUAGES ── */
+  .lang-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .lang-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--rule);
+    color: var(--ink-light);
+    background: var(--bg-card);
+  }
+
+  .lang-tag span {
+    color: var(--ink-faint);
+    margin-left: 0.4rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+  section:nth-child(6) { animation-delay: 0.5s; }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 0 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    .exp-period { padding-top: 0; }
+    .project { grid-template-columns: 2rem 1fr; gap: 0 1rem; }
+    .project-num { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <p class="eyebrow">Data Analyst · Dravograd, Slovenia</p>
+    <h1>Aljaž <em>Ravnjak</em></h1>
+    <p class="tagline">Turning complex data into clear decisions — from energy trading analytics to large-scale SQL engineering.</p>
+    <div class="contact-row">
+      <a href="mailto:aljaz.ravnjak@yahoo.com">aljaz.ravnjak@yahoo.com</a>
+      <a href="https://www.linkedin.com/in/aljazravnjak/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/aravnjak1-byte" target="_blank">GitHub</a>
+      <span class="location">📍 CET timezone</span>
+    </div>
+  </header>
+
+  <section>
+    <p class="section-label">About</p>
+    <p class="about-text">
+      I'm a data analyst with hands-on experience in <strong>SQL-based data engineering, BI reporting, and stakeholder collaboration</strong> in the energy trading sector. I work daily with SQL Server, Snowflake, and Power BI — building ETL pipelines, optimising queries across tables with <strong>hundreds of millions of rows</strong>, and translating business requirements into analytical solutions.<br><br>
+      Before moving into data, I spent a decade as a <strong>translator, interpreter, and teacher</strong> across Slovenian, English, and Russian. That background shapes how I communicate findings — clearly, in the language of whoever's in the room.
+    </p>
+  </section>
+
+  <section>
+    <p class="section-label">Selected Projects</p>
+
+    <div class="project">
+      <div class="project-num">01</div>
+      <div>
+        <p class="project-meta">SQL Server · ETL · Regulatory Reporting</p>
+        <p class="project-title">Large-Scale Billing Data Extraction for State Regulatory Reporting</p>
+        <p class="project-desc">Developed a SQL Server stored procedure to extract and aggregate billing data for mandatory reporting to state regulatory agencies. The core challenge was performance — the source tables contained hundreds of millions of rows. Redesigned the filtering and aggregation logic to run efficiently at scale, producing a reliable, reproducible procedure that became part of the regular regulatory reporting workflow.</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-num">02</div>
+      <div>
+        <p class="project-meta">SQL Server · Data Architecture · Customer Analytics</p>
+        <p class="project-title">Historical Customer Movement Data Extension</p>
+        <p class="project-desc">Built a SQL Server stored procedure extending historical customer movement data from one to three years to support long-term trend analysis across B2C and B2B segments. The work involved dynamic date boundary derivation, corrected rolling 12-month consumption calculations, standardised placeholder values for missing supplier fields, and a UNION ALL architecture to merge historical and current datasets cleanly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <p class="skill-cell-label">SQL & Databases</p>
+        <p class="skill-cell-value">SQL Server · Snowflake · MySQL · Complex queries · Stored procedures</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cell-label">BI & Visualisation</p>
+        <p class="skill-cell-value">Power BI · Data modelling · KPI dashboards · Self-service reporting</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cell-label">Data Engineering</p>
+        <p class="skill-cell-value">ETL pipelines · Data quality · Large-scale query optimisation</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cell-label">Programming</p>
+        <p class="skill-cell-value">Python (pandas · matplotlib · seaborn) · A/B testing methodology</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cell-label">Cloud & Tools</p>
+        <p class="skill-cell-value">Snowflake · AWS · Airflow · GitHub · AI tools (Claude · Copilot)</p>
+      </div>
+      <div class="skill-cell">
+        <p class="skill-cell-label">Languages</p>
+        <p class="skill-cell-value">Slovenian (native) · English (C2) · Russian (C1) · German (B1–B2)</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Experience</p>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Data Analyst</p>
+        <p class="exp-org">Gen-I, d.o.o. — Energy Trading</p>
+        <p class="exp-desc">SQL data engineering, Power BI dashboards, ETL pipelines, regulatory reporting, B2C & B2B customer analytics.</p>
+      </div>
+      <p class="exp-period">Aug 2025 – Present</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Translator, Interpreter & Training Coordinator</p>
+        <p class="exp-org">Slovenska industrija jekla, d.d. (SIJ Group)</p>
+        <p class="exp-desc">Russian & English translation and interpretation; group-level training coordination.</p>
+      </div>
+      <p class="exp-period">2017 – 2018</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Teacher, Translator & Interpreter</p>
+        <p class="exp-org">Gimnazija Ravne na Koroškem / Freelance</p>
+        <p class="exp-desc">Secondary school English & Russian teaching; freelance translation and interpretation.</p>
+      </div>
+      <p class="exp-period">2016 – 2024</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Education & Certifications</p>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">BA English & Russian Language and Literature</p>
+        <p class="exp-org">University of Ljubljana, Faculty of Arts</p>
+      </div>
+      <p class="exp-period">2016</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Data Analyst</p>
+        <p class="exp-org">CodersLab</p>
+      </div>
+      <p class="exp-period">May 2025</p>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <p class="exp-role">Associate Data Engineer · SQL Server Developer</p>
+        <p class="exp-org">DataCamp</p>
+      </div>
+      <p class="exp-period">2024 – 2025</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Aljaž Ravnjak · Data Analyst · Dravograd, Slovenia · aljaz.ravnjak@yahoo.com</p>
+  </footer>
+
+</div>
+</body>
+</html>
